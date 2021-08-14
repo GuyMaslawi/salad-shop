@@ -28,7 +28,7 @@ export const OneProduct = ({
                                 icon
                             }: OneProductProps) => {
 
-    const { ingredients, increment, decrement }: any = useContext(OrderContext);
+    const { increment, decrement }: any = useContext(OrderContext);
     const classes = useStyles();
     const inputClasses = inputStyles();
 

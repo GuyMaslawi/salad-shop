@@ -1,20 +1,19 @@
 import { useHistory } from "react-router";
 import { MainButton, Greeting } from "../../components";
-import { Wrapper } from "./WelcomeStyle";
+import { Background, Wrapper, Content } from "./WelcomeStyle";
 
 export const Welcome = () => {
   const history = useHistory();
 
   return (
     <Wrapper>
-      <Greeting />
-      <MainButton
-        color="primary"
-        variant="contained"
-        onClick={() => history.push("/ingredients")}
-      >
-        Order Salad
-      </MainButton>
+      <Background />
+      <Content>
+        <Greeting />
+        <MainButton onClick={() => history.push("/ingredients")}>
+          Order Salad
+        </MainButton>
+      </Content>
     </Wrapper>
   );
 };

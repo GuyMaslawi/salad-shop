@@ -1,13 +1,22 @@
 import { TextField, TextFieldProps } from "@material-ui/core";
 import { useStyles } from "./InputTextStyle";
 
-export const InputText = (props: TextFieldProps) => {
+interface InputTextProps{
+    ref?: any;
+}
+
+export const InputText = ({
+                            ref,
+                            ...props
+                          }: InputTextProps & TextFieldProps) => {
     const classes = useStyles();
 
     return (
-        <TextField {...props} 
+        <TextField {...props}
+                   ref={ref}
                    variant="outlined"
-                   className={classes.root}/>
+                   className={classes.root} 
+        />
     );
 };
 

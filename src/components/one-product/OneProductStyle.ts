@@ -41,15 +41,15 @@ export const Input = styled(TextField)`
     margin: 0 1rem;
 `;
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme) => ({
     root: {
         height: '4rem',
         minWidth: '4rem',
         fontSize: '1.9rem',
         borderRadius: '50%',
-        backgroundColor: '#ccc'
-    }
-});
+        backgroundColor: theme.palette.primary.main,
+    },
+}));
 
 export const inputStyles = makeStyles({
     root: {

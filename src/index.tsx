@@ -5,11 +5,12 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import GlobalStyle from "./indexStyle";
-import AppContainer from "./theme/Theme";
+import AppContainer from "./app-container/AppContainer";
+import Loader from "./assets/animations/loader/Loader";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback={<h1>Loading...</h1>}>
+    <Suspense fallback={<Loader />}>
       <BrowserRouter>
         <AppContainer>
           <GlobalStyle />

@@ -1,14 +1,11 @@
-import { makeStyles } from "@material-ui/core";
-
+import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles({
     root: {
-        background: ,
         borderRadius: '3rem',
         border: 0,
-        color: '#fff',
         height: '4.8rem',
-        padding: '0 30px',
+        padding: '0 3rem',
         fontSize: '1.8rem',
         textDecoration: 'none',
         display: 'flex',
@@ -17,7 +14,9 @@ export const useStyles = makeStyles({
         width: 'fit-content',
 
         '@media (max-width: 959px)': {
-            fontSize: '1.4rem'
+            fontSize: '1.5rem',
+            width: '22rem',
+            padding: '0 1rem',
         }
-    }
+    },
 });

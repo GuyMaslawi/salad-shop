@@ -2,11 +2,15 @@ import { Title } from "./SubTitleStyle";
 
 interface SubTitleProps{
     text: string;
+    className?: string;
 }
 
-export const SubTitle = ({text}: SubTitleProps) => {
+export const SubTitle = ({
+                            text, 
+                            className
+                         }: SubTitleProps) => {
     return (
-        <Title>{text}</Title>
+        <Title className={className}>{text}</Title>
     );
 };
 

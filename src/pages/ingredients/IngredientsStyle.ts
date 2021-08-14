@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import { makeStyles } from "@material-ui/core";
-import { mobile } from "../../utils/screen-sizes";
+
+export const Wrapper = styled.div`
+    width: 100rem;
+    max-width: 90vw;
+    margin: 2rem auto;
+    height: calc(100vh - 9rem);
+`;
 
 export const Div = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 2rem;
 `;
 
 export const useStyles = makeStyles({
@@ -16,6 +21,7 @@ export const useStyles = makeStyles({
         height: '8rem',
         display: 'flex',
         justifyContent: 'center',
+        zIndex: 20,
 
         '& .MuiGrid-container': {
             maxWidth: '100rem',
@@ -31,12 +37,4 @@ export const useStyles = makeStyles({
 export const Price = styled.div`
     font-size: 3rem;
     color: #fff;
-
-    span{
-        &:first-child {
-            @media ${mobile} {
-                display: none;
-            }
-        }
-    }
 `;

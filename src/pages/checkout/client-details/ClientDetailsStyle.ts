@@ -5,14 +5,21 @@ export const Wrapper = styled.div`
     height: 50rem;
     width: 30rem;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     margin: 0 auto;
 
     @media ${mobile} {
-        min-height: auto;
+        height: auto;
+        width: 100%;
+        padding: 2.5rem 2.5rem 0;
     }
 
     form {
         width: 100%;
     }
+`;
+
+export const Title = styled.h3`
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
 `;

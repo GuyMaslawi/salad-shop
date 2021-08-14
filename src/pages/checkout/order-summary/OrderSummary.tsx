@@ -1,22 +1,13 @@
 import { Grid } from "@material-ui/core";
-import { useContext, useEffect, useState } from "react";
-import { IngredientsModel, OrderContext } from "../../../context";
+import { useContext } from "react";
+import { OrderContext } from "../../../context";
 import { FinalPrice, Title, OneRow } from "./OrderSummaryStyle";
 
 export const OrderSummary = () => {
-    const { ingredients, finalPrice }: any = useContext(OrderContext);
-    const [selectedItems, setSelectedItems] = useState<IngredientsModel[]>([]);
-
-    useEffect(() => {
-        const selectedIngredients = ingredients.filter((ingredient: IngredientsModel) => {
-            return ingredient.amount > 0;
-        });
-
-        setSelectedItems(selectedIngredients);
-    }, []);
+    const { selectedItems, finalPrice }: any = useContext(OrderContext);
 
     return (
-        <Grid container xs={10}>
+        <Grid container item xs={10}>
             <Grid item xs>
                 <Title>Your Order:</Title>
 

@@ -1,4 +1,4 @@
-import { useState, createContext, ReactNode } from "react";
+import { useState, createContext, ReactNode, useEffect } from "react";
 
 export interface IngredientsModel {
     name: string;
@@ -13,6 +13,8 @@ export interface IngredientsContext {
     calcFinalPrice: () => void;
     increment: (index: number) => void;
     decrement: (index: number) => void;
+    resetPrice: () => void;
+    selectedItems: IngredientsModel[];
 }
 
 export const OrderContext = createContext<IngredientsContext | undefined>(undefined);
@@ -27,6 +29,7 @@ const min_count = 0;
 export const OrderProvider = ({ children }: RootProviderProps) => {
     const [ingredients, setIngredients] = useState<IngredientsModel[]>([]);
     const [finalPrice, setPrice] = useState<number>(0);
+    const [selectedItems, setSelectedItems] = useState<IngredientsModel[]>([]);
 
     const increment = (idx: number) => {
         if (ingredients[idx].amount < max_count) {
@@ -64,6 +67,14 @@ export const OrderProvider = ({ children }: RootProviderProps) => {
         setPrice(0);
     };
 
+    useEffect(() => {
+        const selectedIngredients = ingredients.filter((ingredient: IngredientsModel) => {
+            return ingredient.amount > 0;
+        });
+
+        setSelectedItems(selectedIngredients);
+    }, [ingredients]);
+
     return (
         <OrderContext.Provider
             value={{
@@ -73,6 +84,8 @@ export const OrderProvider = ({ children }: RootProviderProps) => {
                 calcFinalPrice,
                 increment,
                 decrement,
+                resetPrice,
+                selectedItems
             }}>
             {children}
         </OrderContext.Provider>

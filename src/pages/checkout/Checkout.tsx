@@ -1,25 +1,22 @@
-import { useState } from "react";
-import { useHistory } from "react-router";
-import { Card, Dialog, Grid } from "@material-ui/core";
-import { MainButton, SubTitle } from "../../components"
+import { Card, Grid } from "@material-ui/core";
 import ClientDetails from "./client-details/ClientDetails";
 import OrderSummary from "./order-summary/OrderSummary";
-import { useStyles } from "./CheckoutStyle";
+import { Background, useStyles, Wrapper, SubTitleStyle } from "./CheckoutStyle";
+import { useSmallScreen } from "../../hooks";
 
 export const Checkout = () => {
-    const [open, setOpen] = useState(false);
-    const history = useHistory();
     const classes = useStyles();
-
-    const openDialog = () => {
-        setOpen(true);
-    };
+    const isMobile = useSmallScreen();
 
     return (
-        <>
-            <SubTitle text="Almost Finish..." />
+        <Wrapper>
+            <Background />
+            <SubTitleStyle text="Almost Finish..." />
             <Card className={classes.root}>
-                <Grid container justifyContent="space-between" style={{ paddingTop: '3rem' }}>
+                <Grid container
+                    direction={isMobile ? 'column-reverse' : 'row'}
+                    justifyContent="space-between"
+                    style={{ paddingTop: isMobile ? '0' : '3rem' }}>
                     <Grid item xs={12} sm={5}>
                         <ClientDetails />
                     </Grid>
@@ -27,17 +24,9 @@ export const Checkout = () => {
                     <Grid item xs={12} sm={4} container justifyContent="center">
                         <OrderSummary />
                     </Grid>
-
-                    <Grid item xs={12} container justifyContent="center">
-                        <MainButton onClick={() => openDialog()}>Order</MainButton>
-                    </Grid>
-
-                    <Dialog open={open}>
-                        <MainButton onClick={() => history.push("/")}>Close</MainButton>
-                    </Dialog>
                 </Grid>
             </Card>
-        </>
+        </Wrapper>
     );
 };
 

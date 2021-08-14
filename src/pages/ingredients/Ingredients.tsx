@@ -3,21 +3,27 @@ import { AppBar, Grid } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { MainButton, OneProduct, SubTitle } from "../../components";
 import { IngredientsModel, OrderContext } from "../../context/OrderContext";
-import { Price, useStyles } from "./IngredientsStyle";
+import { Wrapper, Price, useStyles } from "./IngredientsStyle";
 import AxiosInstance from "../../api/instance/AxiosInstance";
 import { getIcon } from "./images";
+import { useSmallScreen } from "../../hooks";
 
 export const Ingredients = () => {
-  const { ingredients, setIngredients, finalPrice }: any = useContext(OrderContext);
+  const { ingredients, setIngredients, finalPrice, selectedItems }: any = useContext(OrderContext);
   const classes = useStyles();
   const history = useHistory();
+  const isMobile = useSmallScreen();
+
+  const goTo = () => {
+    history.push("/checkout");
+  };
 
   useEffect(() => {
     const getData = async () => {
       const arr = await AxiosInstance.get("/salad.json");
 
-      // reset arr with amount for all ingredients
-      const resetArr = arr.data.items.map(({ name, price }: IngredientsModel) => {
+      // reset arr with amount = 0 for all ingredients
+      const resetArr = arr.data.items.map(({ name, price }: IngredientsModel, amountStorage: {amount: number}) => {
         return {
           name,
           price,
@@ -32,7 +38,7 @@ export const Ingredients = () => {
   }, [setIngredients]);
 
   return (
-    <>
+    <Wrapper>
       <SubTitle text="Choose Your Perfect Salad" />
       <Grid container spacing={2} style={{ paddingBottom: '10rem' }}>
         {ingredients.map(({ name, price, amount }: IngredientsModel, index: number) => {
@@ -43,29 +49,29 @@ export const Ingredients = () => {
                 index={index}
                 name={name}
                 price={price}
-                amount={amount} />
+                amount={selectedItems.amount > 0 ? selectedItems : amount} />
             </Grid>
           );
         })}
       </Grid>
 
-      <AppBar position="fixed" color="primary" className={classes.appBar}>
+      <AppBar position="fixed" color="secondary" className={classes.appBar}>
         <Grid container justifyContent="space-between" alignItems="center">
           <Grid item>
-            <MainButton onClick={() => history.push("/checkout")}>
+            <MainButton onClick={() => goTo()}>
               Proceed To Checkout
             </MainButton>
           </Grid>
           <Grid item>
             <Price>
-              <span>Final Price: </span>
+              {!isMobile && <span>Final Price: </span>}
               <span>${finalPrice}</span>
             </Price>
           </Grid>
         </Grid>
       </AppBar>
 
-    </>
+    </Wrapper>
   );
 };
 

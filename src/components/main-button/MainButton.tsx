@@ -7,16 +7,14 @@ interface MainButtonProps extends ButtonProps {
 
 export const MainButton = ({
                               children,
-                              className,
                               ...props
                             }: MainButtonProps) => {
   const classes = useStyles();
 
   return (
-    <Button className={classes.root}
-            color="secondary" 
-            {...props}>
-      {children}
+    <Button {...props}
+            className={classes.root}>
+            {children}
     </Button>
   );
 };
