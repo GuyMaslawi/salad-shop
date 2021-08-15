@@ -1,10 +1,12 @@
-import { Grid } from "@material-ui/core";
+import { Grid, useMediaQuery } from "@material-ui/core";
 import { useContext } from "react";
 import { OrderContext } from "../../../context";
+import { mobile } from "../../../helpers/screen-sizes";
 import { FinalPrice, Title, OneRow } from "./OrderSummaryStyle";
 
 export const OrderSummary = () => {
   const { selectedItems, finalPrice }: any = useContext(OrderContext);
+  const isMobile = useMediaQuery(mobile);
 
   return (
     <Grid container item xs={10}>
@@ -24,7 +26,7 @@ export const OrderSummary = () => {
 
         <FinalPrice>
           <div>Price:</div>
-          <div>${finalPrice}</div>
+          {!isMobile && <div>${finalPrice}</div>}
         </FinalPrice>
       </Grid>
     </Grid>

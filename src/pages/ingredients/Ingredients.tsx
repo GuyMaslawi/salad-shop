@@ -2,16 +2,17 @@ import { useContext, useEffect } from "react";
 import { AppBar, Grid, useMediaQuery } from "@material-ui/core";
 import { useHistory } from "react-router";
 import { MainButton, OneProduct, SubTitle } from "../../components";
-import { IngredientsContext, IngredientsModel, OrderContext } from "../../context/OrderContext";
+import { IngredientsModel, OrderContext } from "../../context/OrderContext";
 import { Wrapper, Price, useStyles } from "./IngredientsStyle";
 import { getIcon } from "./images";
 import axios from "axios";
+import { mobile } from "../../helpers/screen-sizes";
 
 export const Ingredients = () => {
   const { ingredients, setIngredients, finalPrice }: any = useContext(OrderContext);
   const classes = useStyles();
   const history = useHistory();
-  const isMobile = useMediaQuery('xs');
+  const isMobile = useMediaQuery(mobile);
 
   useEffect(() => {
     const getData = async () => {

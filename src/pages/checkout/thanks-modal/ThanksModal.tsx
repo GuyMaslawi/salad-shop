@@ -15,6 +15,7 @@ import {
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { IFormInputs } from "../client-details/ClientDetails";
 import Delivery from "../../../assets/animations/delivery/Delivery";
+import { mobile } from "../../../helpers/screen-sizes";
 
 interface OrderModalProps {
   open: boolean;
@@ -28,7 +29,7 @@ export const OrderModal = ({
                             customerDetails,
                             }: OrderModalProps) => {
   const { selectedItems, resetPrice, finalPrice }: any =useContext(OrderContext);
-  const isMobile = useMediaQuery('xs');
+  const isMobile = useMediaQuery(mobile);
   const history = useHistory();
 
   const handleClose = () => {
@@ -42,11 +43,11 @@ export const OrderModal = ({
     <Dialog open={open} maxWidth={"lg"}>
       <Grid container>
         {!isMobile && (
-          <Grid item sm={6}>
+          <Grid item md={6}>
             <Delivery />
           </Grid>
         )}
-        <Grid item xs={12} sm={6}>
+        <Grid item sm={12} md={6}>
           <Content>
             <Title>
               <div>

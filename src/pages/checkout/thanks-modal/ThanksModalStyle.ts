@@ -9,18 +9,11 @@ export const OneRow = styled.div`
 `;
 
 export const Content = styled.div`
-  width: 60rem;
   min-height: 100%;
   padding: 3rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-
-  @media ${mobile} {
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-  }
 `;
 
 export const Title = styled.h2`

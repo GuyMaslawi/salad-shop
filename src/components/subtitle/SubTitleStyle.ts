@@ -8,5 +8,6 @@ export const Title = styled.h2`
 
   @media ${mobile} {
     font-size: 2.7rem;
+    margin: 3rem 0;
   }
 `;
