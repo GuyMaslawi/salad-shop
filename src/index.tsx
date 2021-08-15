@@ -9,16 +9,14 @@ import AppContainer from "./app-container/AppContainer";
 import Loader from "./assets/animations/loader/Loader";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Suspense fallback={<Loader />}>
-      <BrowserRouter>
-        <AppContainer>
-          <GlobalStyle />
-          <App />
-        </AppContainer>
-      </BrowserRouter>
-    </Suspense>
-  </React.StrictMode>,
+  <Suspense fallback={<Loader />}>
+    <BrowserRouter>
+      <AppContainer>
+        <GlobalStyle />
+        <App />
+      </AppContainer>
+    </BrowserRouter>
+  </Suspense>,
   document.getElementById("root")
 );
 

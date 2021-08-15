@@ -4,7 +4,7 @@ export const Greeting = () => {
   const date = new Date();
   const hour = date.getHours();
 
-  const currentText = hour < 12 ? 'Good Morning' : 'Good evening';
+  const currentText = hour < 12 ? "Good Morning" : "Good evening";
 
   return (
     <Text>

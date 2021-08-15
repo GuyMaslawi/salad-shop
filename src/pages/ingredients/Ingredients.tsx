@@ -9,7 +9,7 @@ import axios from "axios";
 import { IsMobileSize } from "../../helpers";
 
 export const Ingredients = () => {
-  const { ingredients, setIngredients, finalPrice, selectedItems }: any = useContext(OrderContext);
+  const { ingredients, setIngredients, finalPrice }: any = useContext(OrderContext);
   const classes = useStyles();
   const history = useHistory();
   const isMobile = IsMobileSize();
@@ -48,7 +48,7 @@ export const Ingredients = () => {
                 index={index}
                 name={name}
                 price={price}
-                amount={selectedItems.amount > 0 ? selectedItems : amount} />
+                amount={amount} />
             </Grid>
           );
         })}

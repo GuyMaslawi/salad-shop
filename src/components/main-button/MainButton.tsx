@@ -5,16 +5,12 @@ interface MainButtonProps extends ButtonProps {
   children: string;
 }
 
-export const MainButton = ({
-                              children,
-                              ...props
-                            }: MainButtonProps) => {
+export const MainButton = ({ children, ...props }: MainButtonProps) => {
   const classes = useStyles();
 
   return (
-    <Button {...props}
-            className={classes.root}>
-            {children}
+    <Button {...props} className={classes.root}>
+      {children}
     </Button>
   );
 };

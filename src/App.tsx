@@ -1,6 +1,6 @@
-import { Header } from './components';
-import OrderProvider from './context/OrderContext';
-import Routes from './router/Routes';
+import { Header } from "./components";
+import OrderProvider from "./context/OrderContext";
+import Routes from "./router/Routes";
 
 export const App = () => {
   return (
@@ -9,6 +9,6 @@ export const App = () => {
       <Routes />
     </OrderProvider>
   );
-}
+};
 
 export default App;
