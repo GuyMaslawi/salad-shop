@@ -13,7 +13,6 @@ export interface IngredientsContext {
   calcFinalPrice: () => void;
   addOneIngredient: (index: number) => void;
   removeOneIngredient: (index: number) => void;
-  getLocalStorage: (key: string) => void;
   resetPrice: () => void;
   selectedItems: IngredientsModel[];
 }
@@ -32,6 +31,16 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
   const [finalPrice, setPrice] = useState<number>(0);
   const [selectedItems, setSelectedItems] = useState<IngredientsModel[]>([]);
 
+  useEffect(() => {
+    const selectedIngredients = ingredients.filter(
+      (ingredient: IngredientsModel) => {
+        return ingredient.amount > 0;
+      }
+    );
+
+    setSelectedItems(selectedIngredients);
+  }, [ingredients]);
+  
   const addOneIngredient = (i: number) => {
     if (ingredients[i].amount < max) {
       const tmpArr: IngredientsModel[] = [...ingredients];
@@ -39,7 +48,6 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
 
       setIngredients(tmpArr);
       calcFinalPrice();
-      setLocalStorage(`amount${i}`, tmpArr[i].amount);
     }
   };
 
@@ -50,7 +58,6 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
 
       setIngredients(tmpArr);
       calcFinalPrice();
-      setLocalStorage(`amount${i}`, tmpArr[i].amount);
     }
   };
 
@@ -66,27 +73,9 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
     setPrice(parseFloat(priceTmp.toFixed(2)));
   };
 
-  const setLocalStorage = (key: string, value: number) => {
-    localStorage.setItem(key, value.toString());
-  };
-
-  const getLocalStorage = (key: string) => {
-    localStorage.getItem(key);
-  };
-
   const resetPrice = () => {
     setPrice(0);
   };
-
-  useEffect(() => {
-    const selectedIngredients = ingredients.filter(
-      (ingredient: IngredientsModel) => {
-        return ingredient.amount > 0;
-      }
-    );
-
-    setSelectedItems(selectedIngredients);
-  }, [ingredients]);
 
   return (
     <OrderContext.Provider
@@ -99,7 +88,6 @@ export const OrderProvider = ({ children }: OrderProviderProps) => {
         removeOneIngredient,
         resetPrice,
         selectedItems,
-        getLocalStorage,
       }}
     >
       {children}

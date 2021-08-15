@@ -1,12 +1,11 @@
-import { Card, Grid } from "@material-ui/core";
+import { Card, Grid, useMediaQuery } from "@material-ui/core";
 import ClientDetails from "./client-details/ClientDetails";
 import OrderSummary from "./order-summary/OrderSummary";
 import { Background, useStyles, Wrapper, SubTitleStyle } from "./CheckoutStyle";
-import { IsMobileSize } from "../../helpers";
 
 export const Checkout = () => {
   const classes = useStyles();
-  const isMobile = IsMobileSize();
+  const isMobile = useMediaQuery('xs');
 
   return (
     <Wrapper>

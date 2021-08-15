@@ -1,4 +1,4 @@
-import { Dialog, Grid } from "@material-ui/core";
+import { Dialog, Grid, useMediaQuery } from "@material-ui/core";
 import { useContext } from "react";
 import { useHistory } from "react-router";
 import { MainButton } from "../../../components";
@@ -15,7 +15,6 @@ import {
 import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 import { IFormInputs } from "../client-details/ClientDetails";
 import Delivery from "../../../assets/animations/delivery/Delivery";
-import { IsMobileSize } from "../../../helpers";
 
 interface OrderModalProps {
   open: boolean;
@@ -29,10 +28,10 @@ export const OrderModal = ({
                             customerDetails,
                             }: OrderModalProps) => {
   const { selectedItems, resetPrice, finalPrice }: any =useContext(OrderContext);
-  const isMobile = IsMobileSize();
+  const isMobile = useMediaQuery('xs');
   const history = useHistory();
 
-  const onClose = () => {
+  const handleClose = () => {
     setOpen(false);
     resetPrice();
     localStorage.clear();
@@ -94,7 +93,7 @@ export const OrderModal = ({
             </FinalPrice>
 
             <ConfirmButtonWrap>
-              <MainButton onClick={() => onClose()}>Confirm</MainButton>
+              <MainButton onClick={() => handleClose()}>Confirm</MainButton>
             </ConfirmButtonWrap>
           </Content>
         </Grid>
