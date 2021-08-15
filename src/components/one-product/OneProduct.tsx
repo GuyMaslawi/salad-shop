@@ -28,7 +28,7 @@ export const OneProduct = ({
                                 icon
                             }: OneProductProps) => {
 
-    const { increment, decrement }: any = useContext(OrderContext);
+    const { addOneIngredient, removeOneIngredient }: any = useContext(OrderContext);
     const classes = useStyles();
     const inputClasses = inputStyles();
 
@@ -43,13 +43,13 @@ export const OneProduct = ({
             <div>
                 <Button className={classes.root}
                     type="button"
-                    onClick={() => increment(index)}> + </Button>
+                    onClick={() => addOneIngredient(index)}> + </Button>
 
                 <Input name={name} value={amount} className={inputClasses.root} />
 
                 <Button className={classes.root}
                     type="button"
-                    onClick={() => decrement(index)}> - </Button>
+                    onClick={() => removeOneIngredient(index)}> - </Button>
             </div>
         </Wrapper>
     );

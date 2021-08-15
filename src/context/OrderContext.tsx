@@ -11,40 +11,40 @@ export interface IngredientsContext {
     setIngredients: (ingredients: IngredientsModel[]) => void;
     finalPrice: number;
     calcFinalPrice: () => void;
-    increment: (index: number) => void;
-    decrement: (index: number) => void;
+    addOneIngredient: (index: number) => void;
+    removeOneIngredient: (index: number) => void;
     resetPrice: () => void;
     selectedItems: IngredientsModel[];
 }
 
 export const OrderContext = createContext<IngredientsContext | undefined>(undefined);
 
-interface RootProviderProps {
+const max = 10;
+const min = 0;
+
+interface OrderProviderProps { 
     children: ReactNode;
 }
 
-const max_count = 10;
-const min_count = 0;
-
-export const OrderProvider = ({ children }: RootProviderProps) => {
+export const OrderProvider = ({children}: OrderProviderProps) => {
     const [ingredients, setIngredients] = useState<IngredientsModel[]>([]);
     const [finalPrice, setPrice] = useState<number>(0);
     const [selectedItems, setSelectedItems] = useState<IngredientsModel[]>([]);
 
-    const increment = (idx: number) => {
-        if (ingredients[idx].amount < max_count) {
+    const addOneIngredient = (i: number) => {
+        if (ingredients[i].amount < max) {
             const tmpArr: IngredientsModel[] = [...ingredients];
-            tmpArr[idx].amount += 1;
+            tmpArr[i].amount += 1;
 
             setIngredients(tmpArr);
             calcFinalPrice();
         }
     };
 
-    const decrement = (idx: number) => {
-        if (ingredients[idx].amount > min_count) {
+    const removeOneIngredient = (i: number) => {
+        if (ingredients[i].amount > min) {
             const tmpArr: IngredientsModel[] = [...ingredients];
-            tmpArr[idx].amount -= 1;
+            tmpArr[i].amount -= 1;
 
             setIngredients(tmpArr);
             calcFinalPrice();
@@ -82,8 +82,8 @@ export const OrderProvider = ({ children }: RootProviderProps) => {
                 setIngredients,
                 finalPrice,
                 calcFinalPrice,
-                increment,
-                decrement,
+                addOneIngredient,
+                removeOneIngredient,
                 resetPrice,
                 selectedItems
             }}>
