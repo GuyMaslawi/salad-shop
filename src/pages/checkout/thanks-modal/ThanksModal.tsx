@@ -6,8 +6,8 @@ import { OrderContext } from "../../../context";
 import { Details, Content, OneRow, Title, SubTitle, ConfirmButtonWrap, FinalPrice } from "./ThanksModalStyle";
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import { IFormInputs } from "../client-details/ClientDetails";
-import { useSmallScreen } from "../../../hooks";
 import Delivery from "../../../assets/animations/delivery/Delivery";
+import { IsMobileSize } from "../../../helpers";
 
 interface OrderModalProps {
     open: boolean;
@@ -17,7 +17,7 @@ interface OrderModalProps {
 
 export const OrderModal = ({ open, setOpen, customerDetails }: OrderModalProps) => {
     const { selectedItems, resetPrice, finalPrice }: any = useContext(OrderContext);
-    const isMobile = useSmallScreen();
+    const isMobile = IsMobileSize();
     const history = useHistory();
 
     const onClose = () => {

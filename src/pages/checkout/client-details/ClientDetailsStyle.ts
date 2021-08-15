@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mobile } from "../../../utils/screen-sizes";
+import { mobile } from "../../../helpers/screen-sizes";
 
 export const Wrapper = styled.div`
     height: 50rem;

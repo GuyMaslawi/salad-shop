@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import background from '../../assets/backgrounds/salad.jpg';
-import { mobile } from "../../utils/screen-sizes";
+import { mobile } from "../../helpers/screen-sizes";
 
 export const Wrapper = styled.div`
     display: flex;

@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core";
 import styled from "styled-components";
-import { mobile } from "../../utils/screen-sizes";
+import { mobile } from "../../helpers/screen-sizes";
 import background from '../../assets/backgrounds/salad2.jpg';
 import { SubTitle } from "../../components"
 

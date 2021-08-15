@@ -9,6 +9,12 @@ export const useStyles = makeStyles({
         '& .MuiOutlinedInput-root': {
             borderRadius: '1.2rem',
             fontSize: '1.4rem',
+        },
+
+        '& .MuiFormHelperText-contained': {
+            fontSize: '1.4rem',
+            fontWeight: 'bold',
+            color: 'red'
         }
     },
 });

@@ -4,15 +4,15 @@ import { useHistory } from "react-router";
 import { MainButton, OneProduct, SubTitle } from "../../components";
 import { IngredientsModel, OrderContext } from "../../context/OrderContext";
 import { Wrapper, Price, useStyles } from "./IngredientsStyle";
-import AxiosInstance from "../../api/instance/AxiosInstance";
 import { getIcon } from "./images";
-import { useSmallScreen } from "../../hooks";
+import axios from "axios";
+import { IsMobileSize } from "../../helpers";
 
 export const Ingredients = () => {
   const { ingredients, setIngredients, finalPrice, selectedItems }: any = useContext(OrderContext);
   const classes = useStyles();
   const history = useHistory();
-  const isMobile = useSmallScreen();
+  const isMobile = IsMobileSize();
 
   const goTo = () => {
     history.push("/checkout");
@@ -20,10 +20,9 @@ export const Ingredients = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const arr = await AxiosInstance.get("/salad.json");
+      const arr = await axios.get("/salad.json");
 
-      // reset arr with amount = 0 for all ingredients
-      const resetArr = arr.data.items.map(({ name, price }: IngredientsModel, amountStorage: {amount: number}) => {
+      const resetArr = arr.data.items.map(({ name, price }: IngredientsModel) => {
         return {
           name,
           price,
